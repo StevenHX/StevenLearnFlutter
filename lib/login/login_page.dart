@@ -148,7 +148,7 @@ class _LoginPageState extends State<LoginPage> with ChangeNotifierMixin<LoginPag
             color: Theme.of(context).primaryColor
           ),
         ),
-        // onTap: () => NavigatorUtils.push(context, LoginRouter.registerPage),
+        onTap: () => NavigatorUtils.push(context, LoginRouter.registerPage),
       )
     )
   ];
