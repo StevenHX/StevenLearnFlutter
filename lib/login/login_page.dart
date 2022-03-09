@@ -83,7 +83,7 @@ class _LoginPageState extends State<LoginPage> with ChangeNotifierMixin<LoginPag
         isBack: false,
         actionName: DeerLocalizations.of(context)!.verificationCodeLogin,
         onPressed: () {
-          // NavigatorUtils.push(context, LoginRouter.smsLoginPage);
+          NavigatorUtils.push(context, LoginRouter.smsLoginPage);
         },
       ),
       body: MyScrollView(
@@ -134,7 +134,7 @@ class _LoginPageState extends State<LoginPage> with ChangeNotifierMixin<LoginPag
           key: const Key('forgotPassword'),
           style: Theme.of(context).textTheme.subtitle2,
         ),
-        // onTap: () => NavigatorUtils.push(context, LoginRouter.resetPasswordPage),
+        onTap: () => NavigatorUtils.push(context, LoginRouter.resetPasswordPage),
       ),
     ),
     Gaps.vGap16,
