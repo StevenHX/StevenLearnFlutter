@@ -59,6 +59,11 @@ dependencies:
   webview_flutter: 2.1.1
   # 状态管理 https://github.com/rrousselGit/provider
   provider: ^6.0.1
+  # 轮播图  https://pub.flutter-io.cn/packages/card_swiper
+  card_swiper : ^2.0.1
+  english_words: ^4.0.0
+  # 网络请求库 https://github.com/flutterchina/dio/releases
+  dio: ^4.0.4
 dev_dependencies:
   flutter_test:
     sdk: flutter
