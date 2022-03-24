@@ -1,8 +1,14 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/http/dio_method.dart';
+import 'package:learn_flutter/main/banner_model.dart';
 import 'package:learn_flutter/main/main_subOne_page.dart';
 import 'package:learn_flutter/main/main_subtwo_page.dart';
 import 'package:learn_flutter/res/resources.dart';
+
+import '../http/dio_response.dart';
+import '../http/dio_util.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -15,25 +21,29 @@ class MainPage extends StatefulWidget {
 
 class _MainPage extends State<MainPage> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  List<Image> imgs = [
-    //建立了一个图片数组
-    Image.network(
-      "https://images.unsplash.com/photo-1477346611705-65d1883cee1e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-      fit: BoxFit.cover,
-    ),
-    Image.network(
-      "https://images.unsplash.com/photo-1498550744921-75f79806b8a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
-      fit: BoxFit.cover,
-    ),
-    Image.network(
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-      fit: BoxFit.cover,
-    ),
-  ];
+  List<Image> imgs = [];
+
+  final CancelToken _cancelToken = CancelToken();
+  void requestBannerList() async {
+    DioUtil.getInstance()?.openLog();
+    DioResponse response = await DioUtil().request("/banner/json",
+        method: DioMethod.get, cancelToken: _cancelToken);
+    BannerModel banner = BannerModel.fromJson(response.data);
+    banner.data?.forEach((item) => {
+          setState(() => {
+                imgs.add(Image.network(
+                  item.imagePath.toString(),
+                  fit: BoxFit.cover,
+                ))
+              })
+        });
+  }
+
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+    requestBannerList();
   }
 
   @override

@@ -64,6 +64,8 @@ dependencies:
   english_words: ^4.0.0
   # 网络请求库 https://github.com/flutterchina/dio/releases
   dio: ^4.0.4
+  dio_cookie_manager: ^2.0.0
+  cookie_jar: ^3.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
