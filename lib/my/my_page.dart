@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/my/my_router.dart';
 import 'package:learn_flutter/res/colors.dart';
+import 'package:learn_flutter/route/fluro_navigator.dart';
 import 'package:learn_flutter/util/view_utils.dart';
 
 import '../widgets/load_image.dart';
@@ -21,59 +23,79 @@ class MineItemBean {
 
 class _MyPage extends State<MyPage> {
   List<MineItemBean> mineItemList = [
-    MineItemBean('me', '我的收藏'),
-    MineItemBean('me', '积分排行'),
-    MineItemBean('me', '设置'),
-    MineItemBean('me', '关于')
+    MineItemBean('collect', '我的收藏'),
+    MineItemBean('night', '夜间模式'),
+    MineItemBean('language', '多语言'),
+    MineItemBean('about', '关于')
   ];
   @override
   void initState() {
     super.initState();
   }
 
+  void onMyItemClick(int index) {
+    switch (index) {
+      case 0:
+        break;
+      case 1:
+        NavigatorUtils.push(context, MyRouter.themePage);
+        break;
+      case 2:
+        NavigatorUtils.push(context, MyRouter.localPage);
+        break;
+      case 3:
+        break;
+      default:
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: NestedScrollView(
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return <Widget>[
-              SliverAppBar(
-                expandedHeight: 250,
-                pinned: true, //固定顶部
-                flexibleSpace: FlexibleSpaceBar(
-                  collapseMode: CollapseMode.parallax,
-                  titlePadding: const EdgeInsets.only(left: 15),
-                  title: const Text("StevenHX"),
-                  background: Stack(
-                    children: [
-                      GridView(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 4, //横轴三个子widget
-                                  childAspectRatio: 1.0 //宽高比为1时，子widget
-                                  ),
-                          children: const <Widget>[
-                            Icon(Icons.ac_unit),
-                            Icon(Icons.airport_shuttle),
-                            Icon(Icons.all_inclusive),
-                            Icon(Icons.beach_access),
-                            Icon(Icons.cake),
-                            Icon(Icons.free_breakfast),
-                            Icon(Icons.free_breakfast),
-                            Icon(Icons.free_breakfast),
-                          ]),
-                    ],
-                  ),
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              expandedHeight: 250,
+              pinned: true, //固定顶部
+              flexibleSpace: FlexibleSpaceBar(
+                collapseMode: CollapseMode.parallax,
+                titlePadding: const EdgeInsets.only(left: 15),
+                title: const Text("StevenHX"),
+                background: Stack(
+                  children: [
+                    GridView(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 4, //横轴三个子widget
+                                childAspectRatio: 1.0 //宽高比为1时，子widget
+                                ),
+                        children: const <Widget>[
+                          Icon(Icons.ac_unit),
+                          Icon(Icons.airport_shuttle),
+                          Icon(Icons.all_inclusive),
+                          Icon(Icons.beach_access),
+                          Icon(Icons.cake),
+                          Icon(Icons.free_breakfast),
+                          Icon(Icons.free_breakfast),
+                          Icon(Icons.free_breakfast),
+                        ]),
+                  ],
                 ),
-              )
-            ];
-          },
-          body: MediaQuery.removePadding(
-            removeTop: true,
-            context: context,
-            child: ListView.builder(
-              itemBuilder: (context, index) {
-                return Container(
+              ),
+            )
+          ];
+        },
+        body: MediaQuery.removePadding(
+          removeTop: true,
+          context: context,
+          child: ListView.builder(
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  onMyItemClick(index);
+                },
+                child: Container(
                   margin: const EdgeInsets.only(left: 20, right: 20),
                   padding: const EdgeInsets.only(top: 5, bottom: 5),
                   height: 70,
@@ -96,11 +118,13 @@ class _MyPage extends State<MyPage> {
                       ),
                     ],
                   ),
-                );
-              },
-              itemCount: mineItemList.length,
-            ),
-          )),
+                ),
+              );
+            },
+            itemCount: mineItemList.length,
+          ),
+        ),
+      ),
     );
   }
 }

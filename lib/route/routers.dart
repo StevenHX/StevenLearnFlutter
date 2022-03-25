@@ -6,6 +6,7 @@ import 'package:learn_flutter/route/not_found_page.dart';
 
 import 'package:learn_flutter/home/webview_page.dart';
 import 'package:learn_flutter/login/login_router.dart';
+import 'package:learn_flutter/my/my_router.dart';
 
 class Routes {
 
@@ -31,14 +32,8 @@ class Routes {
 
     _listRouter.clear();
     /// 各自路由由各自模块管理，统一在此添加初始化
-    // _listRouter.add(ShopRouter());
     _listRouter.add(LoginRouter());
-    // _listRouter.add(GoodsRouter());
-    // _listRouter.add(OrderRouter());
-    // _listRouter.add(StoreRouter());
-    // _listRouter.add(AccountRouter());
-    // _listRouter.add(SettingRouter());
-    // _listRouter.add(StatisticsRouter());
+    _listRouter.add(MyRouter());
 
     /// 初始化路由
     void initRouter(IRouterProvider routerProvider) {
