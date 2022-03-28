@@ -117,7 +117,7 @@ class _MyTextFieldState extends State<MyTextField> {
             width: 0.8,
           ),
         ),
-        enabledBorder: UnderlineInputBorder(
+        enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
             color: Colours.line,
             width: 0.8,

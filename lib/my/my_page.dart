@@ -80,6 +80,11 @@ class _MyPage extends State<MyPage> {
                           Icon(Icons.free_breakfast),
                           Icon(Icons.free_breakfast),
                         ]),
+                    const LoadImage(
+                      "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2F82%2Fce%2Fce%2F82cece1703856a860cb39d6a22d7ca26.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1651063270&t=4c27eb7644713b7dba335787429b7637",
+                      width: 600,
+                      height: 400,
+                    )
                   ],
                 ),
               ),
